@@ -20,15 +20,13 @@ const SearchForm = () => {
 
   const [searchParams] = useSearchParams();
   const destinationUrl: ICity[] = JSON.parse(searchParams.get("destination"));
-  const passengersUrl: number = searchParams.get("passengers");
+  const passengersUrl: number = parseInt(searchParams.get("passengers")) || 1;
   const startDateUrl: string = searchParams.get("startDate");
 
   const [startDate, setStartDate] = useState(
     startDateUrl ? new Date(startDateUrl) : new Date()
   );
-  const [passengers, setPassengers] = useState<number>(
-    parseInt(passengersUrl) || 1
-  );
+  const [passengers, setPassengers] = useState<number>(passengersUrl || 1);
   const [destination, setDestination] = useState<number>(
     destinationUrl?.length || 2
   );
@@ -61,6 +59,7 @@ const SearchForm = () => {
 
   const goToResume = () => {
     const distance = getDistance(destinationList);
+    //@ts-ignore
     const url = createSearchParams({
       destination: JSON.stringify(destinationList),
       passengers: passengers,

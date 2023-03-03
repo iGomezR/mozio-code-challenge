@@ -14,7 +14,15 @@ type ICustomDatePicker = {
   setStartDate: Function;
   label?: string;
 };
-
+type ICalendar = {
+    date: Date;
+    changeYear: Function;
+    changeMonth: Function;
+    decreaseMonth: Function;
+    increaseMonth: Function;
+    prevMonthButtonDisabled: boolean;
+    nextMonthButtonDisabled: boolean;
+}
 const CustomDatePicker = ({ label, startDate, setStartDate }: ICustomDatePicker) => {
   const YEARS = Array.from({ length: 10 }).map(
     (val, indx) => new Date().getFullYear() + indx
@@ -39,14 +47,11 @@ const CustomDatePicker = ({ label, startDate, setStartDate }: ICustomDatePicker)
     changeMonth,
     decreaseMonth,
     increaseMonth,
-    prevMonthButtonDisabled,
-    nextMonthButtonDisabled,
-  }) => {
+  }: ICalendar) => {
     return (
       <HeaderContainer>
         <IconContainer
           onClick={() => decreaseMonth()}
-          disabled={prevMonthButtonDisabled}
         >
           <LeftArrow />
         </IconContainer>
@@ -76,7 +81,6 @@ const CustomDatePicker = ({ label, startDate, setStartDate }: ICustomDatePicker)
         </div>
         <IconContainer
           onClick={() => increaseMonth()}
-          disabled={nextMonthButtonDisabled}
         >
           <RightArrow />
         </IconContainer>
@@ -98,7 +102,7 @@ const CustomDatePicker = ({ label, startDate, setStartDate }: ICustomDatePicker)
           increaseMonth,
           prevMonthButtonDisabled,
           nextMonthButtonDisabled,
-        }) =>
+        }: ICalendar) =>
           getCustomHeader({
             date,
             changeYear,

@@ -13,9 +13,13 @@ const ResumeForm = () => {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
+  //@ts-ignore 
   const destination: ICity[] = JSON.parse(searchParams.get("destination"));
+  //@ts-ignore 
   const passengers: number = searchParams.get("passengers");
+  //@ts-ignore 
   const startDate: string = searchParams.get("startDate");
+  //@ts-ignore 
   const distance: number[] = JSON.parse(searchParams.get("distance"));
 
   return (

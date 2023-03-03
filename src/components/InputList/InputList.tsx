@@ -25,6 +25,7 @@ const InputList = ({ label = "", list, onSelected, value }: IInputList) => {
     const loadData = async () => {
       try {
         setIsLoading(true);
+        //@ts-ignore 
         const result: OptionList[] = await getCities(filterVal);
         setData(result);
       } catch (error) {
