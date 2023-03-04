@@ -24,8 +24,9 @@ const Error = () => {
 
   return (
     <Layout>
+      <>
         <Row>
-            Something went wrong
+          Oops! Something went wrong!
         </Row>
         <Button
           label="Back"
@@ -36,6 +37,7 @@ const Error = () => {
             });
           }}
         />
+      </>
     </Layout>
   );
 };
