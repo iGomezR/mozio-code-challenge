@@ -13,7 +13,8 @@ import {
   createSearchParams,
   useNavigate,
 } from "react-router-dom";
-import { getDistance } from "utils/shared";
+import { getDistance } from "services/api-cities";
+
 
 const SearchForm = () => {
   const navigate = useNavigate();
@@ -57,19 +58,31 @@ const SearchForm = () => {
     setDestination((prev) => prev - 1);
   };
 
-  const goToResume = () => {
-    const distance = getDistance(destinationList);
-    //@ts-ignore
-    const url = createSearchParams({
-      destination: JSON.stringify(destinationList),
-      passengers: passengers,
-      startDate: startDate,
-      distance: JSON.stringify(distance),
-    });
-    navigate({
-      pathname: "/resume",
-      search: url.toString(),
-    });
+  const goToResume = async () => {
+    try {
+      const distance = await getDistance(destinationList);
+      const url = createSearchParams({
+        destination: JSON.stringify(destinationList).toString(),
+        passengers: passengers.toString(),
+        startDate: startDate.toString(),
+        distance: JSON.stringify(distance),
+      });
+      navigate({
+        pathname: "/resume",
+        search: url.toString(),
+      });
+    } catch (error) {
+      const url = createSearchParams({
+        destination: JSON.stringify(destinationList).toString(),
+        passengers: passengers.toString(),
+        startDate: startDate.toString(),
+      });
+      navigate({
+        pathname: "/error",
+        search: url.toString(),
+      });
+    }
+
   }
   const isNotCompleted = destinationList?.length < 2 || passengers < 1;
 

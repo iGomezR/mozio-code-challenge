@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import SearchForm from 'components/SearchForm/SearchForm';
-import ResumeForm from 'components/Counter/ResumeForm/ResumeForm';
+import ResumeForm from 'components/ResumeForm/ResumeForm';
+import Error from 'components/Error/Error';
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
           path={`/resume/*`}
           element={<ResumeForm />}
         />
-      {/* <SearchForm /> */}
-      {/* <ResumeForm /> */}
+        <Route
+          path='/error'
+          element={<Error />}
+        />  
     </Routes>
   )
 }

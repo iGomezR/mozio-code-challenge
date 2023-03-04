@@ -29,7 +29,6 @@ const InputList = ({ label = "", list, onSelected, value }: IInputList) => {
         const result: OptionList[] = await getCities(filterVal);
         setData(result);
       } catch (error) {
-        console.log("errooorrrr");
         setHasError(true);
         setData([]);
       } finally {

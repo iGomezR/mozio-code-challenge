@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getDistance, shortDateformatter } from "utils/shared";
+import { shortDateformatter } from "utils/shared";
 import { ICity } from "utils/types";
 import { palette } from "utils/palette";
 import { useNavigate, useSearchParams } from "react-router-dom";
